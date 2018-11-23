@@ -51,6 +51,13 @@ Below are my choices in the application design.
 
  - The domain object *TransactionRecord* represents the transaction record  from the csv file.
  - The domain object *AccountBalance* represents the scanning parameters and results.
+ - The project structure is as follows:
+	 - domain - this is where domain object are kept.
+	 - process - this is individual features are kept.
+	 - application - this is where features implementation are abstracted.
+	 - util - commonly used utilities.
+	 - run - this is where the main execution is started.
+ - All the JUnit test classes are in folder: src/test/java
  - When the application is initialised, the csv file is stream as line by line and each line is mapped to the *TransactionRecord* and cached in as a list for later scanning.
  - The scanning is done in steps described below:
 	 - the list is scan and filtered for *accountId*  in either the *fromAccountId* or *toAccountId* fields.
@@ -58,7 +65,7 @@ Below are my choices in the application design.
 	 - the filtered list is scanned again get all reversed payment transactionId.
 	 - the filtered list is re-filtered will only payment record minus the reversed records.
 	 - the amounts are summed and total records updated in *AccountBalance*
-- Resulting *AccountBalance* values is used for printing. 
+ - Resulting *AccountBalance* values is used for printing. 
 
 The application software is not using any persistence or advanced framework for keeping the input file in memory. Therefore below are some of the disadvantages of this solutions.
 
